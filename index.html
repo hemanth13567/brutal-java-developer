@@ -1,0 +1,1275 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HEMANTH — JAVA DEV</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Courier+Prime:wght@400;700&display=swap");
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #f0f0f0;
+      --fg: #1a1a1a;
+      --accent: #ff2a00;
+      --accent2: #00ff00;
+      --border: 3px solid var(--fg);
+    }
+
+    body {
+      font-family: "Courier Prime", "Space Mono", monospace;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.4;
+      overflow-x: hidden;
+    }
+
+    /* MARQUEE */
+    .marquee-container {
+      background: var(--fg);
+      color: var(--bg);
+      padding: 8px 0;
+      overflow: hidden;
+      border-bottom: var(--border);
+    }
+
+    .marquee {
+      display: flex;
+      animation: scroll 15s linear infinite;
+      white-space: nowrap;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .marquee span {
+      padding: 0 40px;
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* HEADER */
+    header {
+      padding: 60px 20px;
+      border-bottom: var(--border);
+      position: relative;
+    }
+
+    .header-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      align-items: start;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 10vw, 8rem);
+      font-weight: 700;
+      line-height: 0.9;
+      text-transform: uppercase;
+      letter-spacing: -2px;
+    }
+
+    h1 span {
+      display: block;
+      color: var(--accent);
+    }
+
+    .status-box {
+      border: var(--border);
+      padding: 20px;
+      background: #fff;
+      min-width: 280px;
+    }
+
+    .status-box h3 {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 15px;
+      border-bottom: 2px solid var(--fg);
+      padding-bottom: 8px;
+    }
+
+    .status-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      font-size: 13px;
+      border-bottom: 1px dashed var(--fg);
+    }
+
+    .status-item:last-child {
+      border-bottom: none;
+    }
+
+    .blink {
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      border-bottom: var(--border);
+      background: var(--fg);
+    }
+
+    nav a {
+      flex: 1;
+      text-align: center;
+      padding: 20px;
+      color: var(--bg);
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      border-right: var(--border);
+      transition: all 0.1s;
+    }
+
+    nav a:last-child {
+      border-right: none;
+    }
+
+    nav a:hover {
+      background: var(--accent);
+      color: var(--fg);
+    }
+
+    /* SECTIONS */
+    section {
+      border-bottom: var(--border);
+      padding: 60px 20px;
+    }
+
+    .section-header {
+      max-width: 1400px;
+      margin: 0 auto 40px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .section-number {
+      font-size: 80px;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--accent);
+      -webkit-text-stroke: 3px var(--fg);
+      color: transparent;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 4rem);
+      text-transform: uppercase;
+      letter-spacing: -1px;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 40px;
+    }
+
+    .about-text {
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    .about-text p {
+      margin-bottom: 20px;
+    }
+
+    .ascii-box {
+      border: var(--border);
+      padding: 20px;
+      background: var(--fg);
+      color: var(--bg2, #f0f0f0);
+      font-size: 11px;
+      line-height: 1.2;
+      overflow-x: auto;
+    }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 0;
+      border: var(--border);
+    }
+
+    .skill-card {
+      border-right: var(--border);
+      border-bottom: var(--border);
+      padding: 30px;
+      background: #fff;
+    }
+
+    .skill-card:nth-child(3n) {
+      border-right: none;
+    }
+
+    .skill-card h4 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+    }
+
+    .skill-bar {
+      height: 30px;
+      border: 2px solid var(--fg);
+      margin-bottom: 10px;
+      position: relative;
+      background: var(--bg);
+    }
+
+    .skill-fill {
+      height: 100%;
+      background: var(--fg);
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      color: var(--bg);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .skill-tag {
+      display: inline-block;
+      border: 2px solid var(--fg);
+      padding: 5px 12px;
+      margin: 4px;
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 700;
+      background: var(--bg);
+    }
+
+    .skill-tag:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    /* PROJECTS */
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: var(--border);
+    }
+
+    .project-item {
+      border-bottom: var(--border);
+      padding: 40px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 40px;
+      align-items: start;
+      background: #fff;
+      transition: all 0.1s;
+      cursor: pointer;
+    }
+
+    .project-item:last-child {
+      border-bottom: none;
+    }
+
+    .project-item:hover {
+      background: var(--fg);
+      color: var(--bg);
+    }
+
+    .project-item:hover .project-meta {
+      color: var(--accent2);
+    }
+
+    .project-number {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1;
+      -webkit-text-stroke: 2px var(--fg);
+      color: transparent;
+    }
+
+    .project-item:hover .project-number {
+      -webkit-text-stroke: 2px var(--bg);
+    }
+
+    .project-info h3 {
+      font-size: 32px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .project-meta {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent);
+      margin-bottom: 15px;
+    }
+
+    .project-desc {
+      font-size: 15px;
+      line-height: 1.6;
+      max-width: 600px;
+    }
+
+    .project-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .project-links a {
+      border: 2px solid var(--fg);
+      padding: 10px 20px;
+      text-decoration: none;
+      color: var(--fg);
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .project-item:hover .project-links a {
+      border-color: var(--bg);
+      color: var(--bg);
+    }
+
+    .project-links a:hover {
+      background: var(--accent);
+      border-color: var(--accent) !important;
+      color: var(--fg) !important;
+    }
+
+    /* EXPERIENCE */
+    .timeline {
+      border: var(--border);
+      background: #fff;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      border-bottom: var(--border);
+    }
+
+    .timeline-item:last-child {
+      border-bottom: none;
+    }
+
+    .timeline-date {
+      padding: 30px;
+      border-right: var(--border);
+      background: var(--fg);
+      color: var(--bg);
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+    }
+
+    .timeline-content {
+      padding: 30px;
+    }
+
+    .timeline-content h4 {
+      font-size: 24px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .timeline-content .company {
+      font-size: 14px;
+      color: var(--accent);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+    }
+
+    .timeline-content p {
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: var(--border);
+    }
+
+    .contact-info {
+      padding: 60px;
+      border-right: var(--border);
+    }
+
+    .contact-info h3 {
+      font-size: 36px;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+    }
+
+    .contact-detail {
+      margin-bottom: 25px;
+      font-size: 18px;
+    }
+
+    .contact-detail label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 8px;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .contact-form {
+      padding: 60px;
+      background: #fff;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      border: 3px solid var(--fg);
+      padding: 15px;
+      font-family: inherit;
+      font-size: 16px;
+      background: var(--bg);
+      color: var(--fg);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      background: #fff;
+    }
+
+    button {
+      background: var(--fg);
+      color: var(--bg);
+      border: 3px solid var(--fg);
+      padding: 20px 60px;
+      font-family: inherit;
+      font-size: 16px;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 3px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: var(--accent);
+      color: var(--fg);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--fg);
+      color: var(--bg);
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .footer-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+      text-align: left;
+      margin-bottom: 40px;
+    }
+
+    .footer-col h4 {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--bg);
+      padding-bottom: 10px;
+    }
+
+    .footer-col a {
+      display: block;
+      color: var(--bg);
+      text-decoration: none;
+      padding: 8px 0;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    .footer-col a:hover {
+      color: var(--accent2);
+    }
+
+    .copyright {
+      border-top: 2px solid var(--bg);
+      padding-top: 30px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* DECORATIVE ELEMENTS */
+    .corner {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border: 4px solid var(--accent);
+    }
+
+    .corner-tl {
+      top: 20px;
+      left: 20px;
+      border-right: none;
+      border-bottom: none;
+    }
+
+    .corner-tr {
+      top: 20px;
+      right: 20px;
+      border-left: none;
+      border-bottom: none;
+    }
+
+    .corner-bl {
+      bottom: 20px;
+      left: 20px;
+      border-right: none;
+      border-top: none;
+    }
+
+    .corner-br {
+      bottom: 20px;
+      right: 20px;
+      border-left: none;
+      border-top: none;
+    }
+
+    /* GLITCH EFFECT */
+    .glitch {
+      position: relative;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .glitch::before {
+      left: 2px;
+      text-shadow: -2px 0 var(--accent2);
+      clip: rect(24px, 550px, 90px, 0);
+      animation: glitch-anim 3s infinite linear alternate-reverse;
+    }
+
+    .glitch::after {
+      left: -2px;
+      text-shadow: -2px 0 var(--accent);
+      clip: rect(85px, 550px, 140px, 0);
+      animation: glitch-anim2 2.5s infinite linear alternate-reverse;
+    }
+
+    @keyframes glitch-anim {
+      0% {
+        clip: rect(10px, 9999px, 85px, 0);
+      }
+
+      20% {
+        clip: rect(63px, 9999px, 130px, 0);
+      }
+
+      40% {
+        clip: rect(25px, 9999px, 145px, 0);
+      }
+
+      60% {
+        clip: rect(88px, 9999px, 50px, 0);
+      }
+
+      80% {
+        clip: rect(15px, 9999px, 110px, 0);
+      }
+
+      100% {
+        clip: rect(55px, 9999px, 90px, 0);
+      }
+    }
+
+    @keyframes glitch-anim2 {
+      0% {
+        clip: rect(65px, 9999px, 100px, 0);
+      }
+
+      20% {
+        clip: rect(20px, 9999px, 35px, 0);
+      }
+
+      40% {
+        clip: rect(90px, 9999px, 140px, 0);
+      }
+
+      60% {
+        clip: rect(40px, 9999px, 75px, 0);
+      }
+
+      80% {
+        clip: rect(10px, 9999px, 55px, 0);
+      }
+
+      100% {
+        clip: rect(70px, 9999px, 120px, 0);
+      }
+    }
+
+    /* RAW CODE BLOCK */
+    .code-block {
+      background: var(--fg);
+      color: var(--bg);
+      padding: 30px;
+      font-size: 13px;
+      line-height: 1.8;
+      overflow-x: auto;
+      border: var(--border);
+      margin-top: 30px;
+    }
+
+    .code-block .comment {
+      color: #888;
+    }
+
+    .code-block .keyword {
+      color: var(--accent);
+    }
+
+    .code-block .string {
+      color: var(--accent2);
+    }
+
+    .code-block .type {
+      color: #ffaa00;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .header-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        border: none;
+      }
+
+      .contact-info {
+        border-right: none;
+        border-bottom: var(--border);
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-date {
+        border-right: none;
+        border-bottom: var(--border);
+      }
+
+      .project-item {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        flex-wrap: wrap;
+      }
+
+      nav a {
+        flex: 1 1 50%;
+        border-bottom: var(--border);
+      }
+    }
+
+    /* NOISE OVERLAY */
+    .noise {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0.03;
+      z-index: 1000;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+  </style>
+</head>
+
+<body>
+  <div class="noise"></div>
+
+  <!-- MARQUEE -->
+  <div class="marquee-container">
+    <div class="marquee">
+      <span>/// JAVA DEVELOPER /// SPRING BOOT /// MICROSERVICES /// AVAILABLE
+        FOR HIRE /// BACKEND ENGINEER /// SYSTEMS ARCHITECT /// JAVA DEVELOPER
+        /// SPRING BOOT /// MICROSERVICES /// AVAILABLE FOR HIRE /// BACKEND
+        ENGINEER /// SYSTEMS ARCHITECT ///</span>
+      <span>/// JAVA DEVELOPER /// SPRING BOOT /// MICROSERVICES /// AVAILABLE
+        FOR HIRE /// BACKEND ENGINEER /// SYSTEMS ARCHITECT /// JAVA DEVELOPER
+        /// SPRING BOOT /// MICROSERVICES /// AVAILABLE FOR HIRE /// BACKEND
+        ENGINEER /// SYSTEMS ARCHITECT ///</span>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="corner corner-tl"></div>
+    <div class="corner corner-tr"></div>
+    <div class="corner corner-bl"></div>
+    <div class="corner corner-br"></div>
+
+    <div class="header-grid">
+      <div>
+        <h1 class="glitch" data-text="HEMANTH">HEMANTH</h1>
+        <h1><span>JAVA DEV</span></h1>
+      </div>
+      <div class="status-box">
+        <h3>/// SYSTEM STATUS</h3>
+        <div class="status-item">
+          <span>AVAILABILITY</span>
+          <span class="blink" style="color: var(--accent2)">● OPEN</span>
+        </div>
+        <div class="status-item">
+          <span>LOCATION</span>
+          <span>REMOTE / GMT+1</span>
+        </div>
+        <div class="status-item">
+          <span>EXPERIENCE</span>
+          <span>1 YEAR</span>
+        </div>
+        <div class="status-item">
+          <span>STACK</span>
+          <span>JAVA / JVM</span>
+        </div>
+        <div class="status-item">
+          <span>UPTIME</span>
+          <span id="uptime">0000:00:00</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#about">/// ABOUT</a>
+    <a href="#skills">/// SKILLS</a>
+    <a href="#projects">/// PROJECTS</a>
+    <a href="#experience">/// EXPERIENCE</a>
+    <a href="#contact">/// CONTACT</a>
+  </nav>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-header">
+      <div class="section-number">01</div>
+      <h2 class="section-title">ABOUT</h2>
+    </div>
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            I BUILD HIGH-PERFORMANCE BACKEND SYSTEMS. I DON'T DO PRETTY UI — I
+            DO SYSTEMS THAT DON'T CRASH AT 3AM.
+          </p>
+          <p>
+            7+ YEARS WRANGLING THE JVM. SPRING BOOT, MICROSERVICES,
+            DISTRIBUTED SYSTEMS, AND ALL THE BORING INFRASTRUCTURE STUFF THAT
+            KEEPS THE LIGHTS ON.
+          </p>
+          <p>
+            I BELIEVE IN CLEAN CODE, BRUTAL HONESTY, AND SYSTEMS THAT SCALE.
+            NO BUZZWORDS. NO FLUFF. JUST WORKING SOFTWARE.
+          </p>
+          <div class="code-block">
+            <span class="comment">// The truth about software engineering</span>
+            <span class="keyword">public class</span>
+            <span class="type">Reality</span>
+            <span class="keyword">implements</span>
+            <span class="type">BrutalHonesty</span> {
+            <span class="keyword">private static final</span>
+            <span class="type">boolean</span> PRODUCTION_READY =
+            <span class="keyword">true</span>;
+            <span class="keyword">private static final</span>
+            <span class="type">String</span> PHILOSOPHY =
+            <span class="string">"It works on my machine is not acceptable"</span>;
+
+            <span class="keyword">public</span> <span class="type">void</span>
+            <span class="type">shipIt</span>() {
+            <span class="keyword">while</span> (testsPassing) { deploy();
+            monitor(); sleep();
+            <span class="comment">// Optional, usually skipped</span>
+            } } }
+          </div>
+        </div>
+        <div class="ascii-box">
+          <pre>
+    _______________
+   |  ___________  |
+   | |           | |
+   | |   JAVA    | |
+   | |   JVM     | |
+   | |  SPRING   | |
+   | |___________| |
+   |_______________|
+          ||
+     _____||_____
+    |  ________  |
+    | |        | |
+    | |  CODE  | |
+    | |________| |
+    |____________|
+          ||
+     _____||_____
+    |  ________  |
+    | |        | |
+    | | DEPLOY | |
+    | |________| |
+    |____________|
+          ||
+        [====]
+         |  |
+        /    \
+       | PROD |
+        \____/
+</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-header">
+      <div class="section-number">02</div>
+      <h2 class="section-title">SKILLS</h2>
+    </div>
+    <div class="container">
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h4>/// CORE JAVA</h4>
+          <div class="skill-bar">
+            <div class="skill-fill" style="width: 95%">95%</div>
+          </div>
+          <p style="font-size: 13px; margin-bottom: 15px">
+            Collections, Concurrency, JVM Internals, GC Tuning
+          </p>
+          <span class="skill-tag">Java 8-21</span>
+          <span class="skill-tag">Streams API</span>
+          <span class="skill-tag">CompletableFuture</span>
+          <span class="skill-tag">Virtual Threads</span>
+        </div>
+        <div class="skill-card">
+          <h4>/// SPRING ECOSYSTEM</h4>
+          <div class="skill-bar">
+            <div class="skill-fill" style="width: 92%">92%</div>
+          </div>
+          <p style="font-size: 13px; margin-bottom: 15px">
+            Boot, Cloud, Data, Security, Batch
+          </p>
+          <span class="skill-tag">Spring Boot</span>
+          <span class="skill-tag">Spring Cloud</span>
+          <span class="skill-tag">WebFlux</span>
+          <span class="skill-tag">Spring Security</span>
+        </div>
+        <div class="skill-card">
+          <h4>/// DATA & STORAGE</h4>
+          <div class="skill-bar">
+            <div class="skill-fill" style="width: 88%">88%</div>
+          </div>
+          <p style="font-size: 13px; margin-bottom: 15px">
+            SQL, NoSQL, Caching, Messaging
+          </p>
+          <span class="skill-tag">PostgreSQL</span>
+          <span class="skill-tag">MongoDB</span>
+          <span class="skill-tag">Redis</span>
+          <span class="skill-tag">Kafka</span>
+          <span class="skill-tag">RabbitMQ</span>
+        </div>
+        <div class="skill-card">
+          <h4>/// DEVOPS & CLOUD</h4>
+          <div class="skill-bar">
+            <div class="skill-fill" style="width: 85%">85%</div>
+          </div>
+          <p style="font-size: 13px; margin-bottom: 15px">
+            Containers, Orchestration, CI/CD, AWS
+          </p>
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">Kubernetes</span>
+          <span class="skill-tag">AWS</span>
+          <span class="skill-tag">Terraform</span>
+          <span class="skill-tag">GitHub Actions</span>
+        </div>
+        <div class="skill-card">
+          <h4>/// ARCHITECTURE</h4>
+          <div class="skill-bar">
+            <div class="skill-fill" style="width: 90%">90%</div>
+          </div>
+          <p style="font-size: 13px; margin-bottom: 15px">
+            Microservices, Event-Driven, Domain Design
+          </p>
+          <span class="skill-tag">Microservices</span>
+          <span class="skill-tag">Event Sourcing</span>
+          <span class="skill-tag">CQRS</span>
+          <span class="skill-tag">DDD</span>
+        </div>
+        <div class="skill-card">
+          <h4>/// TESTING</h4>
+          <div class="skill-bar">
+            <div class="skill-fill" style="width: 87%">87%</div>
+          </div>
+          <p style="font-size: 13px; margin-bottom: 15px">
+            Unit, Integration, E2E, Performance
+          </p>
+          <span class="skill-tag">JUnit 5</span>
+          <span class="skill-tag">Mockito</span>
+          <span class="skill-tag">TestContainers</span>
+          <span class="skill-tag">Gatling</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-header">
+      <div class="section-number">03</div>
+      <h2 class="section-title">PROJECTS</h2>
+    </div>
+    <div class="container">
+      <div class="project-list">
+        <div class="project-item">
+          <div class="project-number">01</div>
+          <div class="project-info">
+            <div class="project-meta">
+              /// MICROSERVICES /// FINTECH /// 2023
+            </div>
+            <h3>PAYMENT GATEWAY API</h3>
+            <p class="project-desc">
+              HIGH-THROUGHPUT PAYMENT PROCESSING SYSTEM HANDLING 10K+ TPS.
+              BUILT WITH SPRING BOOT, KAFKA, AND DISTRIBUTED SAGA PATTERN.
+              ZERO-DOWNTIME DEPLOYMENTS WITH FEATURE FLAGS.
+            </p>
+          </div>
+          <div class="project-links">
+            <a href="#">GITHUB →</a>
+            <a href="#">DOCS →</a>
+          </div>
+        </div>
+        <div class="project-item">
+          <div class="project-number">02</div>
+          <div class="project-info">
+            <div class="project-meta">
+              /// DISTRIBUTED SYSTEM /// E-COMMERCE /// 2022
+            </div>
+            <h3>INVENTORY MANAGEMENT</h3>
+            <p class="project-desc">
+              EVENT-DRIVEN INVENTORY SYSTEM WITH CQRS AND EVENT SOURCING.
+              REDUCED CONSISTENCY LATENCY BY 80%. BUILT WITH SPRING CLOUD,
+              AXON FRAMEWORK, AND POSTGRESQL.
+            </p>
+          </div>
+          <div class="project-links">
+            <a href="#">GITHUB →</a>
+            <a href="#">CASE STUDY →</a>
+          </div>
+        </div>
+        <div class="project-item">
+          <div class="project-number">03</div>
+          <div class="project-info">
+            <div class="project-meta">/// REAL-TIME /// IOT /// 2021</div>
+            <h3>SENSOR DATA PIPELINE</h3>
+            <p class="project-desc">
+              REAL-TIME STREAMING PIPELINE PROCESSING 1M+ SENSOR
+              EVENTS/MINUTE. WEBSOCKET BACKEND WITH REACTIVE SPRING WEBFLUX.
+              TIME-SERIES STORAGE WITH INFLUXDB.
+            </p>
+          </div>
+          <div class="project-links">
+            <a href="#">GITHUB →</a>
+            <a href="#">DEMO →</a>
+          </div>
+        </div>
+        <div class="project-item">
+          <div class="project-number">04</div>
+          <div class="project-info">
+            <div class="project-meta">
+              /// LEGACY MODERNIZATION /// HEALTHCARE /// 2020
+            </div>
+            <h3>MONOLITH DECOMPOSITION</h3>
+            <p class="project-desc">
+              STRANGLER FIG PATTERN MIGRATION OF 15-YEAR-OLD JAVA EE MONOLITH
+              TO MICROSERVICES. REDUCED DEPLOYMENT TIME FROM 4 HOURS TO 8
+              MINUTES.
+            </p>
+          </div>
+          <div class="project-links">
+            <a href="#">GITHUB →</a>
+            <a href="#">BLOG POST →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-header">
+      <div class="section-number">04</div>
+      <h2 class="section-title">EXPERIENCE</h2>
+    </div>
+    <div class="container">
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">2025 — NOW</div>
+          <div class="timeline-content">
+            <h4>DEVELOPER AND SOCIAL MEDIA CONTENT MANAGER</h4>
+            <div class="company">/// INTEGER IO</div>
+            <p>
+              THE DEVLEPOR AND SOCIAL MEDIA CONTENT MANAGER.
+            </p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2019 — 2022</div>
+          <div class="timeline-content">
+            <h4>JAVA DEVELOPER</h4>
+            <div class="company">/// STARTUPXYZ</div>
+            <p>
+              BUILT PAYMENT PROCESSING SYSTEM FROM SCRATCH. HANDLED 500K+
+              DAILY TRANSACTIONS. IMPLEMENTED DISTRIBUTED TRACING AND
+              OBSERVABILITY STACK. TECH STACK: SPRING BOOT, KAFKA, POSTGRESQL,
+              K8S.
+            </p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2017 — 2019</div>
+          <div class="timeline-content">
+            <h4>JUNIOR DEVELOPER</h4>
+            <div class="company">/// ENTERPRISE SOLUTIONS</div>
+            <p>
+              MAINTAINED LEGACY JAVA EE APPLICATIONS. MIGRATED TO SPRING BOOT.
+              WROTE 200+ UNIT TESTS. LEARNED THAT PRODUCTION INCIDENTS AT 3AM
+              BUILD CHARACTER.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-header">
+      <div class="section-number">05</div>
+      <h2 class="section-title">CONTACT</h2>
+    </div>
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>LET'S BUILD<br />SOMETHING<br />UGLY THAT<br />WORKS.</h3>
+
+          <div class="contact-detail">
+            <label>/// EMAIL</label>
+            john.doe@javadev.com
+          </div>
+          <div class="contact-detail">
+            <label>/// GITHUB</label>
+            github.com/johndoe
+          </div>
+          <div class="contact-detail">
+            <label>/// LINKEDIN</label>
+            linkedin.com/in/johndoe
+          </div>
+          <div class="contact-detail">
+            <label>/// TWITTER / X</label>
+            @johndoecodes
+          </div>
+          <div class="contact-detail">
+            <label>/// LOCATION</label>
+            BERLIN, DE / REMOTE
+          </div>
+        </div>
+        <div class="contact-form">
+          <form onsubmit="
+                event.preventDefault();
+                alert('MESSAGE SENT. I WILL RESPOND WHEN THE BUILD PASSES.');
+              ">
+            <div class="form-group">
+              <label>/// YOUR NAME</label>
+              <input type="text" placeholder="ENTER YOUR NAME" required />
+            </div>
+            <div class="form-group">
+              <label>/// YOUR EMAIL</label>
+              <input type="email" placeholder="ENTER YOUR EMAIL" required />
+            </div>
+            <div class="form-group">
+              <label>/// SUBJECT</label>
+              <input type="text" placeholder="WHAT DO YOU WANT TO BUILD?" />
+            </div>
+            <div class="form-group">
+              <label>/// MESSAGE</label>
+              <textarea rows="6" placeholder="DESCRIBE YOUR PROJECT. BE SPECIFIC. NO 'REVOLUTIONARY IDEAS'."
+                required></textarea>
+            </div>
+            <button type="submit">/// SEND MESSAGE</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>/// NAVIGATION</h4>
+        <a href="#about">ABOUT</a>
+        <a href="#skills">SKILLS</a>
+        <a href="#projects">PROJECTS</a>
+        <a href="#experience">EXPERIENCE</a>
+        <a href="#contact">CONTACT</a>
+      </div>
+      <div class="footer-col">
+        <h4>/// SOCIAL</h4>
+        <a href="#">GITHUB</a>
+        <a href="#">LINKEDIN</a>
+        <a href="#">TWITTER</a>
+        <a href="#">DEV.TO</a>
+        <a href="#">STACK OVERFLOW</a>
+      </div>
+      <div class="footer-col">
+        <h4>/// META</h4>
+        <a href="#">RESUME PDF</a>
+        <a href="#">RSS FEED</a>
+        <a href="#">COLOPHON</a>
+        <a href="#">PRIVACY (NONE)</a>
+      </div>
+    </div>
+    <div class="copyright">
+      © 2024 JOHN DOE — JAVA DEVELOPER — BUILT WITH RAW HTML/CSS AND CAFFEINE
+      — NO FRAMEWORKS WERE HARMED IN THE MAKING OF THIS SITE
+    </div>
+  </footer>
+
+  <script>
+    // Uptime counter
+    function updateUptime() {
+      const start = new Date("2017-01-01").getTime();
+      const now = new Date().getTime();
+      const diff = now - start;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+      );
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+      document.getElementById("uptime").textContent =
+        String(days).padStart(4, "0") +
+        ":" +
+        String(hours).padStart(2, "0") +
+        ":" +
+        String(minutes).padStart(2, "0");
+    }
+    setInterval(updateUptime, 60000);
+    updateUptime();
+
+    // Smooth scroll
+    document.querySelectorAll("nav a").forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute("href"));
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    });
+
+    // Console easter egg
+    console.log(
+      "%c JOHN DOE — JAVA DEV ",
+      "background: #1a1a1a; color: #ff2a00; font-size: 24px; font-weight: bold;",
+    );
+    console.log(
+      "%c Looking at the console? You're my kind of person. ",
+      "background: #1a1a1a; color: #00ff00; font-size: 14px;",
+    );
+  </script>
+</body>
+
+</html>
